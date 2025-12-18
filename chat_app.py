@@ -29,6 +29,46 @@ st.set_page_config(
     layout="wide"
 )
 
+# ===== Autenticación simple =====
+def check_password():
+    """Retorna True si el usuario ingresó la clave correcta."""
+
+    # Clave desde secrets o default para desarrollo
+    correct_password = st.secrets.get("password", "cis2024")
+
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
+
+    if st.session_state.authenticated:
+        return True
+
+    # Mostrar formulario de login
+    st.markdown("""
+    <div style="max-width: 400px; margin: 100px auto; padding: 2rem;
+                background: #1F2937; border-radius: 12px; border: 2px solid #005670;">
+        <h2 style="color: white; text-align: center; margin-bottom: 1rem;">🔐 Acceso CIS</h2>
+        <p style="color: #9BB3BC; text-align: center;">Ingresa la clave para continuar</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        password = st.text_input("Clave", type="password", key="password_input")
+        if st.button("Ingresar", use_container_width=True):
+            if password == correct_password:
+                st.session_state.authenticated = True
+                st.rerun()
+            else:
+                st.error("Clave incorrecta")
+
+    return False
+
+# Verificar autenticación antes de mostrar la app
+if not check_password():
+    st.stop()
+
+# ===== App principal (solo si está autenticado) =====
+
 # Estilos CSS con paleta CIS
 st.markdown(f"""
 <style>
