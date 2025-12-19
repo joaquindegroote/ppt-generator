@@ -17,7 +17,7 @@ venv/
 API.txt
 workflow_*.json
 
-# Streamlit
+# Streamlit secrets (keep config.toml)
 .streamlit/secrets.toml
 
 # OS

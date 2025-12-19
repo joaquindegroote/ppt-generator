@@ -157,10 +157,38 @@ st.markdown(f"""
         background: #003D4D !important;
     }}
 
-    /* Chat messages */
+    /* Chat messages - forzar colores para todos los temas */
     .stChatMessage {{
         background: {CIS["gris_osc"]} !important;
         border-radius: 10px !important;
+    }}
+    .stChatMessage div[data-testid="stMarkdownContainer"] {{
+        color: {CIS["blanco"]} !important;
+    }}
+    .stChatMessage div[data-testid="stMarkdownContainer"] p,
+    .stChatMessage div[data-testid="stMarkdownContainer"] li,
+    .stChatMessage div[data-testid="stMarkdownContainer"] span,
+    .stChatMessage div[data-testid="stMarkdownContainer"] strong {{
+        color: {CIS["blanco"]} !important;
+    }}
+    .stChatMessage div[data-testid="stMarkdownContainer"] strong {{
+        color: #00D4FF !important;
+    }}
+
+    /* Forzar tema oscuro global */
+    .stApp, .main, [data-testid="stAppViewContainer"] {{
+        background-color: {CIS["fondo"]} !important;
+        color: {CIS["blanco"]} !important;
+    }}
+
+    /* Input del chat */
+    .stChatInput textarea {{
+        background: {CIS["gris_osc"]} !important;
+        color: {CIS["blanco"]} !important;
+        border: 1px solid #374151 !important;
+    }}
+    .stChatInput textarea::placeholder {{
+        color: #9CA3AF !important;
     }}
 
     /* Info boxes */
